@@ -1,3 +1,8 @@
+## Preconditions:
+* Node 6.9.x or higher 
+* angular cli : npm install -g @angular/cli
+* npm install when in /frontend to get all node dependencies
+
 # Frontend
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
