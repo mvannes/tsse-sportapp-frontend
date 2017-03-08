@@ -1,14 +1,15 @@
 ## Preconditions:
-* Node 6.9.x or higher 
-* angular cli : npm install -g @angular/cli
-* npm install when in /frontend to get all node dependencies
+* [Node](https://nodejs.org/en/download/) 6.9.x or higher
+* npm comes with node.
+* [angular-cli](https://github.com/angular/angular-cli)  : `npm install -g @angular/cli`
+* `npm install` when in tsse-sportapp/frontend to get all node modules
 
 # Frontend
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
 ## Development server
-Run `ng serve` 🏄 for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
