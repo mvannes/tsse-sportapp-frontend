@@ -1,0 +1,41 @@
+
+<!-- Conversation-list (sideNav) -->
+<ul id="slide-out" class="side-nav fixed">
+
+  <!-- Search bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Chat Sessions -->
+  <ul class="collection" style="overflow: auto">
+    <li *ngFor="let session of sessions" class="collection-item avatar">
+      <img src="" alt="" class="circle">
+      <span class="title">{{session.title}}</span>
+      <p>First Line</p>
+      <span class="secondary-content">Time</span>
+    </li>
+
+    <!--<li class="collection-item avatar">-->
+      <!--<img src="" alt="" class="circle">-->
+      <!--<span class="title">Title</span>-->
+      <!--<p>First Line</p>-->
+      <!--<span class="secondary-content">Time</span>-->
+    <!--</li>-->
+    <!--<li class="collection-item avatar">-->
+      <!--<img src="" alt="" class="circle">-->
+      <!--<span class="title">Title</span>-->
+      <!--<p>First Line</p>-->
+      <!--<span class="secondary-content">Time</span>-->
+    <!--</li>-->
+  </ul>
+
+</ul>
