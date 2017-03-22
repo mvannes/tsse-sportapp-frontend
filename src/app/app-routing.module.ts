@@ -1,12 +1,13 @@
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
-import {ChatComponent} from "./chat/chat.component";
+import {TablepreviewComponent} from "./tablepreview/tablepreview.component";
+import {DefaultComponent} from "./default/default.component";
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', component: ChatComponent},
+  {path: '', pathMatch: 'full', component: DefaultComponent},
   {path: 'login', component: LoginComponent},
-  {path: '**', redirectTo: ''}
+  {path: 'tablepreview', component: TablepreviewComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -15,6 +16,5 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 export const routableComponents = [
-  LoginComponent,
-  ChatComponent
+  LoginComponent
 ];

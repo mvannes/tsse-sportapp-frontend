@@ -5,9 +5,8 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
 import {AppComponent} from "./app.component";
-
-import { ChatSessionComponent } from './chat-session/chat-session.component';
-import { ChatSessionListComponent } from './chat-session-list/chat-session-list.component';
+import { TablepreviewComponent } from './tablepreview/tablepreview.component';
+import { DefaultComponent } from './default/default.component';
 
 @NgModule({
   imports: [
@@ -19,8 +18,8 @@ import { ChatSessionListComponent } from './chat-session-list/chat-session-list.
   declarations: [
     AppComponent,
     routableComponents,
-    ChatSessionComponent,
-    ChatSessionListComponent,
+    TablepreviewComponent,
+    DefaultComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
