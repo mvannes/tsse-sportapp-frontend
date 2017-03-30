@@ -1,0 +1,30 @@
+<div>
+  <div class="container valign-wrapper">
+    <table class="bordered highlight">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Mediafiles</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let exercise of exercises">
+        <td>{{exercise.id}}</td>
+        <td>{{exercise.name}}</td>
+        <td>{{exercise.description}}</td>
+        <td>{{exercise.category}}</td>
+        <td>
+          <ul *ngFor="let media of exercise.mediaFiles">
+            <li><a href="https://www.google.nl/search?q={{media}}">{{media}}</a></li>
+          </ul>
+        </td>
+        <td><i class="material-icons">delete</i></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

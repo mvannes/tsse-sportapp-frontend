@@ -5,8 +5,12 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
 import {AppComponent} from "./app.component";
-import { TablepreviewComponent } from './tablepreview/tablepreview.component';
-import { DefaultComponent } from './default/default.component';
+import {NavigationComponent} from './crud/navigation/navigation.component';
+import { ExerciseComponent } from './crud/sport/exercise/exercise.component';
+import { ScheduleComponent } from './crud/sport/schedule/schedule.component';
+import { WorkoutComponent } from './crud/sport/workout/workout.component';
+import { UserComponent } from './crud/user/user.component';
+import { CrudComponent } from './crud/crud.component';
 
 @NgModule({
   imports: [
@@ -18,8 +22,12 @@ import { DefaultComponent } from './default/default.component';
   declarations: [
     AppComponent,
     routableComponents,
-    TablepreviewComponent,
-    DefaultComponent,
+    NavigationComponent,
+    ExerciseComponent,
+    ScheduleComponent,
+    WorkoutComponent,
+    UserComponent,
+    CrudComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

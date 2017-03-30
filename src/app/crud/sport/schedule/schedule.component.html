@@ -1,0 +1,31 @@
+<div>
+  <div class="container valign-wrapper">
+    <table class="bordered highlight">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Sessions</th>
+        <th>Workouts</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let schedule of schedules">
+        <td>{{schedule.id}}</td>
+        <td>{{schedule.name}}</td>
+        <td>{{schedule.description}}</td>
+        <td>{{schedule.amountOfTrainingsPerWeek}}</td>
+        <td>
+          <ul *ngFor="let workout of schedule.workouts">
+            <li><a href="https://www.google.nl/search?q={{workout.name}}">{{workout.name}}</a></li>
+          </ul>
+        </td>
+        <td><i class="material-icons">delete</i></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

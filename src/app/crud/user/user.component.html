@@ -1,0 +1,25 @@
+<div>
+  <div class="container valign-wrapper">
+    <table class="bordered highlight">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>E-mail</th>
+        <th>Password</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.password}}</td>
+        <td><i class="material-icons">delete</i></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

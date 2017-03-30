@@ -1,0 +1,22 @@
+<nav class="nav-extended">
+  <div class="nav-wrapper">
+    <a [routerLink]="['/']" class="brand-logo">Logo</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a [routerLink]="['/login']">Logout</a></li>
+
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a [routerLink]="['/login']">Logout</a></li>
+
+    </ul>
+  </div>
+  <div class="nav-content">
+    <ul class="tabs tabs-transparent">
+      <li class="tab"><a [routerLink]="['/crud/exercises']">Exercises</a></li>
+      <li class="tab"><a [routerLink]="['/crud/workouts']">Workouts</a></li>
+      <li class="tab"><a [routerLink]="['/crud/schedules']">Schedules</a></li>
+      <li class="tab"><a [routerLink]="['/crud/users']">Users</a></li>
+    </ul>
+  </div>
+</nav>
