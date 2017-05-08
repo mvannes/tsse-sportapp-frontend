@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Exercise} from "./exercise";
+import {ExerciseService} from "./exercise.service";
 
 @Component({
   selector: 'app-exercise',
@@ -8,12 +9,16 @@ import {Exercise} from "./exercise";
 })
 export class ExerciseComponent implements OnInit {
 
-  constructor() {
+  errorMessage: string;
+  // exercises: Exercise[];
+  mode = 'Observable';
+
+  constructor(private exerciseService: ExerciseService) {
   }
 
   ngOnInit() {
+    this.getHeroes();
   }
-
 
   exercises: Exercise[] = [
     new Exercise(1, "idw", "desc", "cat", ["media", "medi77a2", "m7777edia2", "m7777edia2", "me777777dia2"]),
@@ -39,5 +44,13 @@ export class ExerciseComponent implements OnInit {
     new Exercise(19, "Kitra", "Cullen", "Fusce.fermentum@nonenim.co.uk", ["media", "media2"]),
     new Exercise(20, "Celeste", "Simon", "at.sem@cursusInteger.net", ["media", "media2"])
   ];
+
+
+  getHeroes() {
+    this.exerciseService.getExercises()
+      .subscribe(
+        heroes => this.exercises = heroes,
+        error => this.errorMessage = <any>error);
+  }
 
 }

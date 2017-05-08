@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let exercise of exercises">
+      <tr *ngFor="let exercise of exercises" onclick="exerciseDetail()">
         <td>{{exercise.id}}</td>
         <td>{{exercise.name}}</td>
         <td>{{exercise.description}}</td>
@@ -28,3 +28,4 @@
     </table>
   </div>
 </div>
+
