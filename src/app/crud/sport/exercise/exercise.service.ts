@@ -9,7 +9,7 @@ import {Exercise} from "./exercise";
 @Injectable()
 export class ExerciseService {
 
-  private exerciseUrl = 'api/heroes';  // URL to web API
+  private exerciseUrl = 'localhost:8080/exercises';  // URL to web API
 
 
   constructor(private http: Http) {
