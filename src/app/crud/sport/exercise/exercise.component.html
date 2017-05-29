@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let exercise of exercises" onclick="onSelect(exercise)">
+      <tr *ngFor="let exercise of exercises">
         <td>{{exercise.id}}</td>
         <td>{{exercise.name}}</td>
         <td>{{exercise.description}}</td>
@@ -28,4 +28,3 @@
     </table>
   </div>
 </div>
-

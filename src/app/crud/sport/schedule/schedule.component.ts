@@ -1,56 +1,59 @@
-import {Component, OnInit} from '@angular/core';
-import {Schedule} from "./schedule";
-import {Workout} from "../workout/workout";
-import {Exercise} from "../exercise/exercise";
-
+import {Component, OnInit} from "@angular/core";
+import {Schedule} from "../schedule/schedule";
+import {ScheduleService} from "./schedule.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss']
+  styleUrls: ['./schedule.component.scss'],
+  providers: [ScheduleService],
 })
 export class ScheduleComponent implements OnInit {
+  schedules: Schedule[] = [];
+  selectedSchedule: Schedule;
 
-  constructor() {
+  constructor(private scheduleService: ScheduleService,
+              private router: Router) {
   }
 
-  ngOnInit() {
+  getSchedules(): void {
+    this.scheduleService
+      .getSchedules()
+      .then(schedules => this.schedules = schedules);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.scheduleService.create(name)
+      .then(schedule => {
+        this.schedules.push(schedule);
+        this.selectedSchedule = null;
+      });
+  }
 
-  schedules: Schedule[] = [
-    new Schedule(1, "name", "desc", [
-      new Workout(1, 'name', 'desc', [
-        new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-        new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-      new Workout(1, 'name', 'desc', [
-        new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-        new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-      new Workout(1, 'name', 'desc', [
-        new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-        new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])])],
-      3),
-    new Schedule(1, "name", "desc", [
-        new Workout(1, 'name', 'desc', [
-          new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-          new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-        new Workout(1, 'name', 'desc', [
-          new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-          new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-        new Workout(1, 'name', 'desc', [
-          new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-          new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])])],
-      3),
-    new Schedule(1, "name", "desc", [
-        new Workout(1, 'name', 'desc', [
-          new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-          new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-        new Workout(1, 'name', 'desc', [
-          new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-          new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-        new Workout(1, 'name', 'desc', [
-          new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']),
-          new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])])],
-      3)
-  ];
+  delete(schedule: Schedule): void {
+    this.scheduleService
+      .delete(schedule.id)
+      .then(() => {
+        this.schedules = this.schedules.filter(h => h !== schedule);
+        if (this.selectedSchedule === schedule) {
+          this.selectedSchedule = null;
+        }
+      });
+  }
 
+  ngOnInit(): void {
+    this.getSchedules();
+  }
+
+  onSelect(schedule: Schedule): void {
+    this.selectedSchedule = schedule;
+  }
+
+  gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedSchedule.id]);
+  }
 }

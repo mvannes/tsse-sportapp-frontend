@@ -1,28 +1,60 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {User} from "./user";
-import {Exercise} from "../sport/exercise/exercise";
+import {UserService} from "./user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
+  providers: [UserService],
 })
 export class UserComponent implements OnInit {
+  users: User[] = [];
+  selectedUser: User;
 
-  constructor() {
+  constructor(private userService: UserService,
+              private router: Router) {
   }
 
-  ngOnInit() {
+  getUsers(): void {
+    this.userService
+      .getUsers()
+      .then(users => this.users = users);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.userService.create(name)
+      .then(user => {
+        this.users.push(user);
+        this.selectedUser = null;
+      });
+  }
 
-  users: User[] = [
-    new User(1, "lars", "l@rscornelissen.com", "kajfu38fn39$#TGerg$#TQG$%HQ#GAWERQ@$#"),
-    new User(2, "boyd", "boyd@hogerheijde.com", "75c6fq44gq3%C$T@#%G@#%TG@4C#G@$%VG@C$"),
-    new User(3, "fabian", "f@bianramos.com", "aergaergaer%C$T@#%G@#%TG@4C#G@$%VG@C$"),
-    new User(4, "mitchell", "m@tchell.com", "43w56736734%C$T@#%G@#%TG@4C#G@$%VG@C$"),
-    new User(5, "michael", "m@chael.com", "q23tqt3qet4%C$T@#%G@#%TG@4C#G@$%VG@C$"),
-    new User(6, "floris", "fl@ris.com", "aeeagegrtvce%C$T@#%G@#%hTG@4C#G@$%VG@C$"),
-    new User(7, "mohammed", "moh@mmed.com", "ijllmilhimohhm%C$T@#%G@#%TG#G@$%VG@C$")
-  ];
+  delete(user: User): void {
+    this.userService
+      .delete(user.id)
+      .then(() => {
+        this.users = this.users.filter(h => h !== user);
+        if (this.selectedUser === user) {
+          this.selectedUser = null;
+        }
+      });
+  }
+
+  ngOnInit(): void {
+    this.getUsers();
+  }
+
+  onSelect(user: User): void {
+    this.selectedUser = user;
+  }
+
+  gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedUser.id]);
+  }
 }

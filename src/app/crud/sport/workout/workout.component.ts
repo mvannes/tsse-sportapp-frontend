@@ -1,41 +1,60 @@
-import {Component, OnInit} from '@angular/core';
-import {Workout} from './workout';
-import {Exercise} from '../exercise/exercise';
+import {Component, OnInit} from "@angular/core";
+import {Workout} from "./workout";
+import {WorkoutService} from "./workout.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
-  styleUrls: ['./workout.component.scss']
+  styleUrls: ['./workout.component.scss'],
+  providers: [WorkoutService],
 })
 export class WorkoutComponent implements OnInit {
+  workouts: Workout[] = [];
+  selectedWorkout: Workout;
 
-    constructor() {
+  constructor(private workoutService: WorkoutService,
+              private router: Router) {
   }
 
-  ngOnInit() {
+  getWorkouts(): void {
+    this.workoutService
+      .getWorkouts()
+      .then(workouts => this.workouts = workouts);
   }
 
-  //
-  // workout
-  // private _id: number;
-  // private _name: string;
-  // private _description: string;
-  // private _exercises: Exercise[];
-  //
-  //
-  // exercise
-  // public _id: number;
-  // public _name : string;
-  // public _description: string;
-  // public _category: string;
-  // public _mediaFiles : string[];
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.workoutService.create(name)
+      .then(workout => {
+        this.workouts.push(workout);
+        this.selectedWorkout = null;
+      });
+  }
 
+  delete(workout: Workout): void {
+    this.workoutService
+      .delete(workout.id)
+      .then(() => {
+        this.workouts = this.workouts.filter(h => h !== workout);
+        if (this.selectedWorkout === workout) {
+          this.selectedWorkout = null;
+        }
+      });
+  }
 
-  workouts: Workout[] = [
-    new Workout(1, 'name', 'desc', [new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']), new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-    new Workout(2, 'name', 'desc', [new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']), new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-    new Workout(3, 'name', 'desc', [new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']), new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])]),
-    new Workout(4, 'name', 'desc', [new Exercise(1, 'idw', 'desc', 'cat', ['media', 'medi77a2', 'm7777edia2', 'm7777edia2', 'me777777dia2']), new Exercise(2, 'idw', 'desc', 'cat', ['media', 'media2'])])
-  ];
+  ngOnInit(): void {
+    this.getWorkouts();
+  }
 
+  onSelect(workout: Workout): void {
+    this.selectedWorkout = workout;
+  }
+
+  gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedWorkout.id]);
+  }
 }

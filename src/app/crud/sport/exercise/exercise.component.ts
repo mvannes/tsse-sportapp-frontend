@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Exercise} from "./exercise";
 import {ExerciseService} from "./exercise.service";
 import {Router} from "@angular/router";
@@ -7,17 +7,15 @@ import {Router} from "@angular/router";
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
   styleUrls: ['./exercise.component.scss'],
-  providers: [ExerciseService]
+  providers: [ExerciseService],
 })
 export class ExerciseComponent implements OnInit {
-  exercises: Exercise[];
+  exercises: Exercise[] = [];
   selectedExercise: Exercise;
 
-  constructor(
-    private exerciseService: ExerciseService,
-    private router: Router) { }
-
-
+  constructor(private exerciseService: ExerciseService,
+              private router: Router) {
+  }
 
   getExercises(): void {
     this.exerciseService
@@ -27,7 +25,9 @@ export class ExerciseComponent implements OnInit {
 
   add(name: string): void {
     name = name.trim();
-    if (!name) { return; }
+    if (!name) {
+      return;
+    }
     this.exerciseService.create(name)
       .then(exercise => {
         this.exercises.push(exercise);
@@ -40,13 +40,15 @@ export class ExerciseComponent implements OnInit {
       .delete(exercise.id)
       .then(() => {
         this.exercises = this.exercises.filter(h => h !== exercise);
-        if (this.selectedExercise === exercise) { this.selectedExercise = null; }
+        if (this.selectedExercise === exercise) {
+          this.selectedExercise = null;
+        }
       });
   }
 
   ngOnInit(): void {
     this.getExercises();
-   }
+  }
 
   onSelect(exercise: Exercise): void {
     this.selectedExercise = exercise;

@@ -17,7 +17,7 @@
         <td>{{workout.description}}</td>
         <td>
           <ul *ngFor="let exercise of workout.exercises">
-            <li><a href="https://www.google.nl/search?q={{exercise.id}}">{{exercise.name}}</a></li>
+            <li><a href="/{{exercise.id}}">{{exercise.name}}</a></li>
           </ul>
         </td>
         <td><i class="material-icons">delete</i></td>

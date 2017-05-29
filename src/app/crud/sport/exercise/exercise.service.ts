@@ -8,20 +8,19 @@ import {Exercise} from "./exercise";
 @Injectable()
 export class ExerciseService {
 
-  private exercisesUrl = 'http://145.28.225.69:8080/api/exercises/';  // URL to web API
+  private exercisesUrl = 'http://145.28.144.214:8080/api/exercises/';  // URL to web API
   private headers = new Headers();
 
 
   constructor(private http: Http) {
+    this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
+    this.headers.append('getExercises', 'text/plain');
   }
 
   getExercises(): Promise<Exercise[]> {
-    this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
-    this.headers.append('getExercises', 'text/plain');
-    return this.http.get(this.exercisesUrl
-      , {headers : this.headers}
-    ).toPromise()
-      .then(response => response.json().data as Exercise[])
+    return this.http.get(this.exercisesUrl, {headers: this.headers})
+      .toPromise()
+      .then(response => response.json() as Exercise[])
       .catch(this.handleError);
   }
 
@@ -29,7 +28,7 @@ export class ExerciseService {
     const url = `${this.exercisesUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Exercise)
+      .then(response => response.json() as Exercise)
       .catch(this.handleError);
   }
 
@@ -45,7 +44,7 @@ export class ExerciseService {
     return this.http
       .post(this.exercisesUrl, JSON.stringify({name: name}), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Exercise)
+      .then(res => res.json() as Exercise)
       .catch(this.handleError);
   }
 

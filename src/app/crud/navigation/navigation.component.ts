@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ExerciseComponent} from "../sport/exercise/exercise.component";
 
 @Component({
   selector: 'app-navigation',
