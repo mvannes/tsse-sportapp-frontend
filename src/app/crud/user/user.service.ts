@@ -4,11 +4,13 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/toPromise";
 import {Headers, Http} from "@angular/http";
 import {User} from "./user";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class UserService {
 
-  private usersUrl = 'http://145.28.144.214:8080/api/users/';  // URL to web API
+
+  private usersUrl = environment.apiUrl +  "users/";  // URL to web API
   private headers = new Headers();
 
 

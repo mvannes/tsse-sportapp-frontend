@@ -4,11 +4,12 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/toPromise";
 import {Headers, Http} from "@angular/http";
 import {Schedule} from "./schedule";
+import {environment} from "../../../../environments/environment";
 
 @Injectable()
 export class ScheduleService {
 
-  private schedulesUrl = 'http://145.28.144.214:8080/api/schedules/';  // URL to web API
+  private schedulesUrl = environment.apiUrl +  "schedules/";  // URL to web API
   private headers = new Headers();
 
 

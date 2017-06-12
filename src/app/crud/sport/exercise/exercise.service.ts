@@ -4,11 +4,12 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/toPromise";
 import {Headers, Http} from "@angular/http";
 import {Exercise} from "./exercise";
+import {environment} from "../../../../environments/environment";
 
 @Injectable()
 export class ExerciseService {
 
-  private exercisesUrl = 'http://145.28.144.214:8080/api/exercises/';  // URL to web API
+  private exercisesUrl = environment.apiUrl +  "exercises/";  // URL to web API
   private headers = new Headers();
 
 
