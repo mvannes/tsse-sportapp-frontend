@@ -27,7 +27,7 @@ import { CrudComponent } from './crud/crud.component';
     ScheduleComponent,
     WorkoutComponent,
     UserComponent,
-    CrudComponent
+    CrudComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,11 +14,15 @@ export class ExerciseService {
 
 
   constructor(private http: Http) {
-    this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
+    console.log(this.exercisesUrl);
+    this.headers.append('Authorization', 'Basic ' + btoa('tsse:welkom123'));
     this.headers.append('getExercises', 'text/plain');
+    console.log(this.headers.toString());
+    console.log(this.headers.get("Authorization").toString());
   }
 
   getExercises(): Promise<Exercise[]> {
+    console.log(this.exercisesUrl);
     return this.http.get(this.exercisesUrl, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Exercise[])
@@ -41,9 +45,9 @@ export class ExerciseService {
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Exercise> {
+  create(exercise: Exercise): Promise<Exercise> {
     return this.http
-      .post(this.exercisesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post(this.exercisesUrl, JSON.stringify(exercise), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as Exercise)
       .catch(this.handleError);
