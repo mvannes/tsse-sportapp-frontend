@@ -10,8 +10,14 @@ import {Router} from "@angular/router";
   providers: [ExerciseService],
 })
 export class ExerciseComponent implements OnInit {
-  exercises: Exercise[] = [];
+  // exercises: Exercise[] = [];
   selectedExercise: Exercise;
+  newExercise: Exercise;
+
+  exercises: Exercise[] = [
+    new Exercise(1, "idw", "desc", ["media", "medi77a2", "m7777edia2", "m7777edia2", "me777777dia2"], "name")
+  ];
+
 
   constructor(private exerciseService: ExerciseService,
               private router: Router) {
@@ -23,19 +29,23 @@ export class ExerciseComponent implements OnInit {
       .then(exercises => this.exercises = exercises);
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-    this.exerciseService.create(name)
+  addExercise(): void {
+    this.exerciseService.create(this.newExercise)
       .then(exercise => {
         this.exercises.push(exercise);
+        this.newExercise = null;
+      });
+  }
+
+  editExercise(): void {
+    this.exerciseService.update(this.selectedExercise)
+      .then(exercise => {
         this.selectedExercise = null;
       });
   }
 
-  delete(exercise: Exercise): void {
+
+  deleteExercise(exercise: Exercise): void {
     this.exerciseService
       .delete(exercise.id)
       .then(() => {
@@ -54,7 +64,16 @@ export class ExerciseComponent implements OnInit {
     this.selectedExercise = exercise;
   }
 
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedExercise.id]);
+  onNew(): void {
+    this.newExercise = new Exercise(0, "", "", [""], "");
   }
+
+  newExerciseCancel(): void {
+    this.newExercise = null;
+  }
+
+  selectedExerciseCancel(): void {
+    this.selectedExercise = null;
+  }
+
 }

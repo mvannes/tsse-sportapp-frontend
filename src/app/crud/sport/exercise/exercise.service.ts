@@ -41,9 +41,9 @@ export class ExerciseService {
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Exercise> {
+  create(exercise: Exercise): Promise<Exercise> {
     return this.http
-      .post(this.exercisesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post(this.exercisesUrl, JSON.stringify(exercise), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as Exercise)
       .catch(this.handleError);
