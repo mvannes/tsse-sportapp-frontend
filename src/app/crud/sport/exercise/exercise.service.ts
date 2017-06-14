@@ -14,11 +14,8 @@ export class ExerciseService {
 
 
   constructor(private http: Http) {
-    console.log(this.exercisesUrl);
-    this.headers.append('Authorization', 'Basic ' + btoa('tsse:welkom123'));
-    this.headers.append('getExercises', 'text/plain');
-    console.log(this.headers.toString());
-    console.log(this.headers.get("Authorization").toString());
+    // this.headers.append('Authorization', 'Basic ' + btoa('tsse:welkom123'));
+  this.headers.append('Content-Type', 'application/json' );
   }
 
   getExercises(): Promise<Exercise[]> {
@@ -38,7 +35,7 @@ export class ExerciseService {
   }
 
   delete(id: number): Promise<void> {
-    const url = `${this.exercisesUrl}/${id}`;
+    const url = `${this.exercisesUrl}${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)

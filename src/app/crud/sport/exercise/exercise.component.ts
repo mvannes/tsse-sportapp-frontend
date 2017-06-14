@@ -40,14 +40,11 @@ export class ExerciseComponent implements OnInit {
   }
 
 
-  deleteExercise(exercise: Exercise): void {
+  deleteExercise(): void {
     this.exerciseService
-      .delete(exercise.id)
+      .delete(this.selectedExercise.id)
       .then(() => {
-        this.exercises = this.exercises.filter(h => h !== exercise);
-        if (this.selectedExercise === exercise) {
-          this.selectedExercise = null;
-        }
+        this.selectedExercise = null;
       });
   }
 
@@ -60,7 +57,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   onNew(): void {
-    this.newExercise = new Exercise(0, "", "", [""], "");
+    this.newExercise = new Exercise(0, 0, "", [""], "");
   }
 
   newExerciseCancel(): void {

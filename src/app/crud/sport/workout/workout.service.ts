@@ -14,8 +14,8 @@ export class WorkoutService {
 
 
   constructor(private http: Http) {
-    this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
-    this.headers.append('getWorkouts', 'text/plain');
+    // this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
+    // this.headers.append('getWorkouts', 'text/plain');
   }
 
   getWorkouts(): Promise<Workout[]> {

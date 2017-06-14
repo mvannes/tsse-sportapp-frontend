@@ -14,8 +14,8 @@ export class ScheduleService {
 
 
   constructor(private http: Http) {
-    this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
-    this.headers.append('getSchedules', 'text/plain');
+    // this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
+    // this.headers.append('getSchedules', 'text/plain');
   }
 
   getSchedules(): Promise<Schedule[]> {

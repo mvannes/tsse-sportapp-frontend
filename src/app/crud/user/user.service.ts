@@ -15,8 +15,8 @@ export class UserService {
 
 
   constructor(private http: Http) {
-    this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
-    this.headers.append('getUsers', 'text/plain');
+    // this.headers.append('Authorization', 'Basic ' + btoa('TSSE:welkom123'));
+    // this.headers.append('getUsers', 'text/plain');
   }
 
   getUsers(): Promise<User[]> {

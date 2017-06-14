@@ -1,61 +1,65 @@
 <div class="row">
-  <div class="col s3">
-    <button *ngIf="!newExercise" (click)="onNew()">New Exercise</button>
-    <div *ngIf="newExercise">
-      <h5>{{newExercise.name}}</h5>
-      <div class="">
-        <label>id: </label>{{newExercise.id}}<BR>
-        <label>name: </label>
-        <input [(ngModel)]="newExercise.name" placeholder="name"/>
-        <label>description: </label>
-        <input [(ngModel)]="newExercise.description" placeholder="name"/>
-        <label>Category: </label>
-        <input [(ngModel)]="newExercise.category" placeholder="name"/>
+  <div class="row">
+    <div class="col s12">
+      <button class="waves-effect waves-light btn" *ngIf="!newExercise" (click)="onNew()">New Exercise</button>
+      <div *ngIf="newExercise">
+        <h5>{{newExercise.name}}</h5>
+        <div class="">
+          <label>id: </label>{{newExercise.id}}<BR>
+          <label>name: </label>
+          <input [(ngModel)]="newExercise.name" placeholder="name"/>
+          <label>description: </label>
+          <input [(ngModel)]="newExercise.description" placeholder="name"/>
+          <label>Category: </label>
+          <input [(ngModel)]="newExercise.category" placeholder="name"/>
+        </div>
+        <button class="waves-effect waves-light btn" (click)="addExercise()">Save Exercise</button>
+        <button class="waves-effect waves-light btn" (click)="newExerciseCancel()">Cancel</button>
       </div>
-      <button (click)="addExercise()">Save Exercise</button>
-      <button (click)="newExerciseCancel()">Cancel</button>
-    </div>
-    <div *ngIf="selectedExercise">
-      <h5>{{selectedExercise.name}}</h5>
-      <div>
-        <label>id: </label>{{selectedExercise.id}}<BR>
-        <label>name: </label>
-        <input [(ngModel)]="selectedExercise.name" placeholder="name"/>
-        <label>description: </label>
-        <input [(ngModel)]="selectedExercise.description" placeholder="name"/>
-        <label>Category: </label>
-        <input [(ngModel)]="selectedExercise.category" placeholder="name"/>
+      <div *ngIf="selectedExercise">
+        <h5>{{selectedExercise.name}}</h5>
+        <div>
+          <label>id: </label>{{selectedExercise.id}}<BR>
+          <label>name: </label>
+          <input [(ngModel)]="selectedExercise.name" placeholder="name"/>
+          <label>description: </label>
+          <input [(ngModel)]="selectedExercise.description" placeholder="name"/>
+          <label>Category: </label>
+          <input [(ngModel)]="selectedExercise.category" placeholder="name"/>
+        </div>
+        <button class="waves-effect waves-light btn" (click)="editExercise()">Save Changes</button>
+        <button class="waves-effect waves-light btn" (click)="selectedExerciseCancel()">Cancel</button>
+        <button class="waves-effect waves-light btn" (click)="deleteExercise()">Delete</button>
       </div>
-      <button (click)="editExercise()">Save Changes</button>
-      <button (click)="selectedExerciseCancel()">Cancel</button>
     </div>
   </div>
-  <div class="col s9 right-align right">
-    <table class="bordered highlight">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Category</th>
-        <th>Mediafiles</th>
-        <th>Delete</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let exercise of exercises" (click)="onSelect(exercise)">
-        <td>{{exercise.id}}</td>
-        <td>{{exercise.name}}</td>
-        <td>{{exercise.description}}</td>
-        <td>{{exercise.category}}</td>
-        <td>
-          <ul *ngFor="let media of exercise.mediaFiles">
-            <li><a href="https://www.google.nl/search?q={{media}}">{{media}}</a></li>
-          </ul>
-        </td>
-        <td><i (click)="deleteExercise(exercise)" class="material-icons">delete</i></td>
-      </tr>
-      </tbody>
-    </table>
+
+  <div class="row">
+    <div class="col s12 right-align right">
+      <table class="bordered highlight">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Mediafiles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let exercise of exercises" (click)="onSelect(exercise)">
+          <td>{{exercise.id}}</td>
+          <td>{{exercise.name}}</td>
+          <td>{{exercise.description}}</td>
+          <td>{{exercise.category}}</td>
+          <td>
+            <ul *ngFor="let media of exercise.mediaFiles">
+              <li><a href="https://www.google.nl/search?q={{media}}">{{media}}</a></li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

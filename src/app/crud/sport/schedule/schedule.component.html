@@ -19,7 +19,7 @@
         <td>{{schedule.amountOfTrainingsPerWeek}}</td>
         <td>
           <ul *ngFor="let workout of schedule.workouts">
-            <li><a href="https://www.google.nl/search?q={{workout.name}}">{{workout.name}}</a></li>
+            <li><a [routerLink]="['/crud/workouts']">{{workout.name}}</a></li>
           </ul>
         </td>
         <td><i class="material-icons">delete</i></td>
